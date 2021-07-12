@@ -1,7 +1,7 @@
 import './App.css';
 import Board from './components/Board';
 
-const fen = 'r0r0r0r0/g0g0g0g0/y0y0y0y0/b0b0b0b0 r 4'
+const fen = 'r2r0r0r0/g0g2g0g0/y0y0y0y47/b0b6b24b0 r 4'
 
 function App() {
   return (

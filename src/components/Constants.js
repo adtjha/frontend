@@ -1,12 +1,26 @@
-import rotateMatrix from "./functions/rotateMatrix";
 
 const path = 6,
   safe = 5,
-  red = 1,
-  green = 2,
-  yellow = 3,
-  blue = 4,
-  piece = 8;
+  red = {
+    begin: 11,
+    final: 12,
+    end: 13
+  },
+  green = {
+    begin: 21,
+    final: 22,
+    end: 23
+  },
+  yellow = {
+    begin: 31,
+    final: 32,
+    end: 33
+  },
+  blue = {
+    begin: 41,
+    final: 42,
+    end: 43
+  };
 
 // prettier-ignore
 const DEFAULT_BOARD_LAYOUT = [
@@ -23,6 +37,26 @@ const DEFAULT_BOARD_LAYOUT = [
     ['0',  '0', '0',  '0', '0', '6', '3', '5', '0',  '0', '0',  '0', '0'],
     ['0', 'y3', '0', 'y4', '0', '3', '3', '6', '0', 'b3', '0', 'b4', '0'],
     ['0',  '0', '0',  '0', '0', '6', '6', '6', '0',  '0', '0',  '0', '0'],
+]
+
+/*
+  0 -> null | 1 -> red 
+*/
+// prettier-ignore
+const DEFAULT_CELL_LAYOUT = [
+    [ '0',  '0',  '0',  '0',  '0',  '6',  '6',  '6',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0',  '6', '22', '21',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0',  '5', '22',  '6',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0',  '6', '22',  '6',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0',  '6', '22',  '6',  '0',  '0',  '0',  '0', '0'],
+    [ '6', '11',  '6',  '6',  '6',  '0', '23',  '0',  '6',  '6',  '5',  '6', '6'],
+    [ '6', '12', '12', '12', '12', '13',  '0', '43', '42', '42', '42', '42', '6'],
+    [ '6',  '6',  '5',  '6',  '6',  '0', '33',  '0',  '6',  '6',  '6', '41', '6'],
+    [ '0',  '0',  '0',  '0',  '0',  '6', '32',  '6',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0',  '6', '32',  '6',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0',  '6', '32',  '5',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0', '31', '32',  '6',  '0',  '0',  '0',  '0', '0'],
+    [ '0',  '0',  '0',  '0',  '0',  '6',  '6',  '6',  '0',  '0',  '0',  '0', '0'],
 ]
 
 // prettier-ignore
@@ -110,8 +144,62 @@ const BLUE_PATH = [
   [null, null, null, null, null,   11,   10,    9, null, null, null, null, null], 
 ];
 
+const path_types = {
+  home: ['p1', 'p2', 'p3', 'p4'],
+  begin: [1],
+  final: [44,45,46,47],
+  end: [48]
+}
+
+/*
+  where[0] -> begin
+  where[1] -> final
+  where[2] -> end
+*/
+const cell_obj = {
+  where: [false, false, false],
+  safe: false,
+  style: "cell w-8 h-8 p-1 text-center outline-black bg-gray-100",
+  has: [],
+  pos: {},
+};
+
+const safe_cell_obj = {
+  where: [false, false, false],
+  safe: true,
+  style: "cell w-8 h-8 p-1 text-center outline-black bg-safe-cell",
+  has: [],
+  pos: {},
+};
+
+const begin_cell_obj = {
+  where: [true, false, false],
+  safe: false,
+  style: "cell w-8 h-8 p-1 text-center outline-black",
+  has: [],
+  pos: {},
+};
+
+const final_cell_obj = {
+  where: [false, true, false],
+  safe: false,
+  style: "cell w-8 h-8 p-1 text-center outline-black",
+  has: [],
+  pos: {},
+};
+
+const end_cell_obj = {
+  where: [false, false, true],
+  safe: false,
+  style: "cell w-8 h-8 p-1 text-center outline-black",
+  has: [],
+  pos: {},
+};
+
+
 const Constants = {
   DEFAULT_BOARD_LAYOUT,
+  DEFAULT_CELL_LAYOUT,
   LOCATION_BOARD_LAYOUT,
   RED_PATH,
   GREEN_PATH,
@@ -123,7 +211,12 @@ const Constants = {
   green,
   yellow,
   blue,
-  piece,
+  path_types,
+  cell_obj,
+  safe_cell_obj,
+  begin_cell_obj,
+  final_cell_obj,
+  end_cell_obj
 };
 
 export default Constants;

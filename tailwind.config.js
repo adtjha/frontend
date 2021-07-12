@@ -49,6 +49,9 @@ module.exports = {
         '12': '12',
         '13': '13',
       },
+      backgroundImage: theme => ({
+        'safe-cell': "url(./images/safe.svg)"
+      })
     },
   },
   variants: {

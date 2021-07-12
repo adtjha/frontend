@@ -1,25 +1,28 @@
-import { useState } from 'react';
-import piece from '../images/piece.png'
+import React from 'react';
+import red from '../images/red.svg'
+import green from "../images/green.svg";
+import yellow from "../images/yellow.svg";
+import blue from "../images/blue.svg";
 
 function Piece(props) {
 
-    const [place, setplace] = useState('0')
-
     const letter = props.data
-    var color;
+    var piece;
 
     if (letter.includes('r')){
-        color = 'red'
+        piece = red;
     } else if (letter.includes('g')){
-        color = 'green'
+        piece = green
     } else if (letter.includes('y')){
-        color = 'yellow'
+        piece = yellow
     } else {
-        color = 'blue'
+        piece = blue
     }
 
     return (
-        <img className={'bg-'+color+'-300'} data={props.data} src={piece} alt="P"></img>
+      <React.Fragment>
+        <img className="stroke-0" data={props.data} src={piece} alt="P"></img>
+      </React.Fragment>
     );
 }
 

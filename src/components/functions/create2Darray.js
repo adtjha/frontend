@@ -1,6 +1,6 @@
 import extractObject from "./extractObject";
-import validateFen from "./validateFen";
 import placeData from "./placeData";
+import Constants from "../Constants";
 import _ from "lodash";
 
 export default function create2Darray(fen) {
@@ -30,7 +30,7 @@ export default function create2Darray(fen) {
 
   // red player piece placement
   const colors = ["red", "green", "yellow", "blue"];
-  var board = _.cloneDeep(template2DArray);
+  var board = _.cloneDeep(Constants.DEFAULT_CELL_LAYOUT);
   var updated2DArray = [];
 
   _.forIn(data, (v, k) => {

@@ -2,35 +2,27 @@ import Constants from "../Constants";
 import _ from "lodash";
 
 export default function placeData(color, colorArray, board) {
-  // 'r'
-  // const n = color[0];
-
-  //  traverse rows
+  // Place Cell objects
   for (let i = 0; i < board.length; i++) {
-    // traverse cells column-wise
     for (let j = 0; j < board[i].length; j++) {
-      // find specific piece
-      colorArray.forEach((e, i) => {
-        // found piece
-        // move piece if not on 0, else leave as it is
-        // find location to move
-        var [x, y] = locate(e, color);
-
-        // console.log(e, e.split('')[1], colorArray,
-        //   !(board[x][y] in ["0", "1", "2", "3", "4", "5", "6"]), board[x][y]
-        // );
-        // location has other pieces as well,
-        // if (!(board[x][y] in ["0", "1", "2", "3", "4", "5", "6"])) {
-        // place the piece with all other
-        // board[x][y] = board[i][j];
-        // board[i][j] = "0";
-        // } else {
-        // place the piece, if no other
-        board[x][y] = color[0].concat(i+1);
-        // }
-      });
+      if (board[i][j] !== "0") {
+        if (!board[i][j].where) {
+          console.log(board[i][j], i, j, color);
+          board[i][j] = placeCellObjects(board[i][j], i, j, color);
+        }
+      }
     }
   }
+  console.log(board);
+  // // Placing pieces
+  // colorArray.forEach((e, i) => {
+  //   // find location to move
+  //   var [x, y] = locate(e, color);
+  //   // location has other pieces as well,
+  //   // place the piece with all other
+  //   // place the piece, if no other
+  //   board[x][y] = color[0].concat(i+1);
+  // });
   // return edited board.
   return board;
 }
@@ -39,6 +31,7 @@ export default function placeData(color, colorArray, board) {
 function locate(num, color) {
   const pathName = color.toUpperCase() + "_PATH";
   const path = _.cloneDeep(Constants[pathName]);
+  console.log(Constants[pathName]);
 
   var x, y;
 
@@ -53,4 +46,39 @@ function locate(num, color) {
   }
 
   return [x, y];
+}
+
+function placeCellObjects(cellid, i, j, color) {
+  let cellObject;
+  // find cell_obj according to cell id,
+  // clone cell_obj
+  if (cellid.length > 1) {
+    if (cellid[1] === "1") {
+      // begin cell
+      cellObject = _.cloneDeep(Constants["begin_cell_obj"]);
+      cellObject.style.concat(" bg-" + color + "-400");
+    } else if (cellid[1] === "2") {
+      // final cell
+      cellObject = _.cloneDeep(Constants["final_cell_obj"]);
+      cellObject.style.concat(" bg-" + color + "-400");
+    } else if (cellid[1] === "3") {
+      // end cell
+      cellObject = _.cloneDeep(Constants["end_cell_obj"]);
+      cellObject.style.concat(" bg-" + color + "-400");
+    }
+  } else {
+    if (cellid === "6") {
+      // normal cell
+      cellObject = _.cloneDeep(Constants["cell_obj"]);
+    } else if (cellid === "5") {
+      // safe cell
+      cellObject = _.cloneDeep(Constants["safe_cell_obj"]);
+    }
+  }
+  // fill req. data in cell_obj
+  cellObject.pos.x = i;
+  cellObject.pos.y = j;
+
+  // return cell_obj.
+  return cellObject;
 }
