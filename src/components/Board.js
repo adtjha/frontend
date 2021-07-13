@@ -23,27 +23,17 @@ class Board extends React.Component {
   componentDidMount(){
     this.updateBoard(this.props.fen);
   }
-  getSnapshotBeforeUpdate(prevProps, prevState){
-    console.log(prevProps, prevState);
-    return null;
-  }
-
-  componentDidUpdate(prevProps, prevState, snapshot){
-    console.log(prevProps, prevState, this.state.position);
-  }
 
   render() {
     return (
       <div>
         <h1 className="font-sans text-4xl text-center p-6">JAI &#128591;</h1>
-        <div
-          key={this.props.id}
-          className="board w-max h-max m-auto p-2 border-2 border-solid rounded shadow-md"
-        >
+        <div className="board w-max h-max m-auto p-2 border-2 border-solid rounded shadow-md">
           <div className="z-20 w-max grid grid-rows-13 grid-cols-1 gap-1 justify-items-stretch">
             {row.map((e) => (
               <Row
-                count={letters[e - 1]}
+                key={"row_" + letters[e - 1]}
+                count={letters[e-1]}
                 rowData={this.state.position[e - 1]}
                 cellLayout={layout[e - 1]}
               />

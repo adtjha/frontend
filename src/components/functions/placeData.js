@@ -7,13 +7,11 @@ export default function placeData(color, colorArray, board) {
     for (let j = 0; j < board[i].length; j++) {
       if (board[i][j] !== "0") {
         if (!board[i][j].where) {
-          console.log(board[i][j], i, j, color);
           board[i][j] = placeCellObjects(board[i][j], i, j, color);
         }
       }
     }
   }
-  console.log(board);
   // // Placing pieces
   // colorArray.forEach((e, i) => {
   //   // find location to move
