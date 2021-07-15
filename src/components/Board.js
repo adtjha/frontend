@@ -1,47 +1,59 @@
 import React from 'react'
 import Constants from './Constants'
-import Row from './Row'
-import create2Darray from './functions/create2Darray'
+import Cell from './Cell'
+import _ from 'lodash'
 
-const row = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
-const letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm']
-const layout = Constants.DEFAULT_CELL_LAYOUT
 const default_layout = Constants.DEFAULT_BOARD_LAYOUT
 class Board extends React.Component {
   constructor(props) {
-    super(props)
+    super(props);
     this.state = {
-      position: default_layout
-    }
-    this.updateBoard = this.updateBoard.bind(this)
-  }
-  
-  updateBoard(fen) {
-    this.setState({ position: create2Darray(fen) });
+      position: default_layout,
+    };
+    this.updateBoard = this.updateBoard.bind(this);
+    // console.log(this.state)
   }
 
-  componentDidMount(){
-    this.updateBoard(this.props.fen);
+  updateBoard(pos) {
+    // console.log(pos)
+    this.setState({position: this.props.pos}, ()=>{/*console.log(this.state)*/});
+    // console.log("Done")
+  }
+
+  componentDidMount() {
+    this.updateBoard(this.props.pos);
+  }
+
+  componentDidUpdate(){
+    // console.log(this.state.position);
   }
 
   render() {
+    // console.log(this.state);
     return (
       <div>
         <h1 className="font-sans text-4xl text-center p-6">JAI &#128591;</h1>
         <div className="board w-max h-max m-auto p-2 border-2 border-solid rounded shadow-md">
-          <div className="z-20 w-max grid grid-rows-13 grid-cols-1 gap-1 justify-items-stretch">
-            {row.map((e) => (
-              <Row
-                key={"row_" + letters[e - 1]}
-                count={letters[e-1]}
-                rowData={this.state.position[e - 1]}
-                cellLayout={layout[e - 1]}
-              />
+          <div className="z-20 w-max grid grid-cols-13 auto-rows-auto gap-1 justify-items-stretch">
+            {this.state.position.map((cell) => (
+              <Cell key={cell.id} data={cell} />
             ))}
           </div>
         </div>
       </div>
     );
+  }
+
+  move(piece, from, to){
+    const demo = _.cloneDeep(this.state.position);
+    let ptm=[];
+    demo[from].has = _.remove(demo[from].has, (p)=>{
+      if (p !== piece){
+       return p 
+      } else ptm.push(piece)
+    })
+    demo[to].has.push(_.cloneDeep(ptm))
+    this.updateBoard(demo)
   }
 }
 

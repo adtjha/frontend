@@ -1,44 +1,31 @@
 import extractObject from "./extractObject";
-import placeData from "./placeData";
 import Constants from "../Constants";
 import _ from "lodash";
+import replaceCell from "./placeCell";
+import { placePiece } from "./placePiece";
 
 export default function create2Darray(fen) {
-  // create 2D Array Layout
-  // if (validateFen(fen)) {
-  //   return new SyntaxError("FEN STRING IS NOT VALID");
-  // }
-
   const data = extractObject(fen);
-
-  // prettier-ignore
-  const template2DArray = [
-    ['0',  '0', '0',  '0', '0', '6', '6', '6', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '6', '2', '5', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '5', '2', '6', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '6', '2', '6', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '6', '2', '6', '0',  '0', '0',  '0', '0'],
-    ['6',  '5', '6',  '6', '6', '0', '2', '0', '6',  '6', '5',  '6', '6'],
-    ['6',  '1', '1',  '1', '1', '1', '0', '4', '4',  '4', '4',  '4', '6'],
-    ['6',  '6', '5',  '6', '6', '0', '3', '0', '6',  '6', '6',  '5', '6'],
-    ['0',  '0', '0',  '0', '0', '6', '3', '6', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '6', '3', '6', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '6', '3', '5', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '5', '3', '6', '0',  '0', '0',  '0', '0'],
-    ['0',  '0', '0',  '0', '0', '6', '6', '6', '0',  '0', '0',  '0', '0'],
-];
 
   // red player piece placement
   const colors = ["red", "green", "yellow", "blue"];
   var board = _.cloneDeep(Constants.DEFAULT_CELL_LAYOUT);
   var updated2DArray = [];
 
-  _.forIn(data, (v, k) => {
-    if (colors.includes(k)) {
-      updated2DArray = placeData(k, v, _.cloneDeep(board));
-      board = _.cloneDeep(updated2DArray);
-    }
+  colors.forEach(e => {
+      updated2DArray = Object.assign(
+        updated2DArray,
+        replaceCell(e, board)
+      );
+      board = Object.assign(board, updated2DArray);
   });
+
+  Object.keys(data).forEach(e => {
+    if(colors.includes(e)){
+      updated2DArray = placePiece(data[e], e, _.cloneDeep(board));
+      board = _.cloneDeep(updated2DArray)
+    }
+  })
 
   return updated2DArray;
 }
