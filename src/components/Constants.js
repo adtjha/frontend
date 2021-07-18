@@ -26,6 +26,13 @@ const path = 6,
     end: 43
   };
 
+  const colorNames = {
+    r: 'red',
+    g: 'green',
+    y: 'yellow',
+    b: 'blue'
+  }
+
 // prettier-ignore
 const DEFAULT_BOARD_LAYOUT = [
   '0',  '0', '0',  '0', '0', '6', '6', '6', '0',  '0', '0',  '0', '0',
@@ -209,6 +216,20 @@ const end_cell_obj = {
 };
 
 
+// const movement_css = {
+//   diagonal: [{
+//     type: [1,-1],
+//     value: " transition-transform duration-300 transform translate-x-9 -translate-y-9",
+//   },{
+//     type: []
+//   }],
+//   right: '',
+//   left: '',
+//   top: '',
+//   bottom: ''
+// };
+
+
 const Constants = {
   DEFAULT_BOARD_LAYOUT,
   DEFAULT_CELL_LAYOUT,
@@ -223,6 +244,7 @@ const Constants = {
   green,
   yellow,
   blue,
+  colorNames,
   path_types,
   empty_cell_obj,
   cell_obj,

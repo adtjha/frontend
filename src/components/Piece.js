@@ -4,11 +4,25 @@ import green from "../images/green.svg";
 import yellow from "../images/yellow.svg";
 import blue from "../images/blue.svg";
 import _ from "lodash";
+import { useDispatch, useSelector } from "react-redux";
+import Constants from "./Constants";
 
 function Piece(props) {
   const letter = props.data;
   var className;
   var piece;
+  var temp = '';
+
+  // const selectedPiece = useSelector((state) => state.selectedPiece);
+  const dispatch = useDispatch();
+
+  const handleClick = () => {
+    temp = " transition-transform duration-300 transform -translate-x-9";
+    dispatch({
+      type: "move/"+Constants.colorNames[props.data.split('')[0]],
+      payload: props.data.split("")[1] - 1,
+    });
+  };
 
   if (letter.includes("r")) {
     piece = red;
@@ -28,9 +42,19 @@ function Piece(props) {
     className = "w-2 h-2";
   }
 
+  // if (selectedPiece === props.data) {
+  //   className += " transition-transform duration-300 transform -translate-x-9";
+  // }
+
   return (
     <React.Fragment>
-      <img className={className} data={props.data} src={piece} alt="P"></img>
+      <img
+        className={className+temp}
+        data={props.data}
+        src={piece}
+        alt={props.data}
+        onClick={handleClick}
+      ></img>
     </React.Fragment>
   );
 }

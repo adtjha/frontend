@@ -12,18 +12,21 @@ export default function extractObject(fen) {
     e.shift();
   });
 
-  _.forIn({ red: red, green: green, yellow: yellow, blue: blue }, (v, k) => {
-    for (let i = 0; i < v.length; i++) {
-      if (v[i] === "0") {
-        var letter = k.split("")[0];
-        v[i] = letter.concat(i + 1);
-      } else {
-        v[i] = parseInt(v[i])
-      }
-    }
+  [red, green, yellow, blue].forEach((e) => {
+    e = Object.assign(
+      e,
+      e.map((p) => parseInt(p))
+    );
   });
 
-  // console.log({ red: red, green: green, yellow: yellow, blue: blue });
+  _.forIn({ red: red, green: green, yellow: yellow, blue: blue }, (v, k) => {
+    for (let i = 0; i < v.length; i++) {
+      if (v[i] === 0) {
+        var letter = k.split("")[0];
+        v[i] = letter.concat(i + 1);
+      } else continue;
+    }
+  });
 
   return {
     red: red,

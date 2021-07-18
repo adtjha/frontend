@@ -21,12 +21,10 @@ function placeCellObjects(cellid, i, color) {
     j = i % 13;
   // find cell_obj according to cell id,
   // clone cell_obj
-  // console.log(Constants[color], cellid);
   if (cellid.length > 1) {
     cellid = parseInt(cellid);
     // begin cell
     if (Constants[color].begin === cellid) {
-      // console.log(Constants[color].begin, cellid);
       cellObject = _.cloneDeep(Constants["begin_cell_obj"]);
       cellObject.style += " bg-" + color + "-400";
 

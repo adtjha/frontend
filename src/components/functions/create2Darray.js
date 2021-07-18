@@ -1,11 +1,9 @@
-import extractObject from "./extractObject";
 import Constants from "../Constants";
-import _ from "lodash";
 import replaceCell from "./placeCell";
 import { placePiece } from "./placePiece";
+import _ from "lodash";
 
-export default function create2Darray(fen) {
-  const data = extractObject(fen);
+export default function create2Darray(data) {
 
   // red player piece placement
   const colors = ["red", "green", "yellow", "blue"];

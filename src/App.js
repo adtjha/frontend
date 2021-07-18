@@ -2,10 +2,10 @@ import './App.css';
 import Board from './components/Board';
 
 function App() {
-  console.log("Updates")
   return (
     <div className="App p-8">
-      <Board key={1} />
+      <h1 className="font-sans text-4xl text-center p-6">JAI &#128591;</h1>
+      <Board key={1}/>
     </div>
   );
 }
