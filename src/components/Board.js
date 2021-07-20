@@ -10,7 +10,6 @@ const Board = (props) => {
     yellow: useSelector((state) => state.move.yellow),
     blue: useSelector((state) => state.move.blue),
   };
-  console.log(data)
   const pos = [...create2Darray(data)];
 
   return (

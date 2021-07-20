@@ -1,37 +1,36 @@
-
 const path = 6,
   safe = 5,
   red = {
     id: 1,
     begin: 11,
     final: 12,
-    end: 13
+    end: 13,
   },
   green = {
     id: 2,
     begin: 21,
     final: 22,
-    end: 23
+    end: 23,
   },
   yellow = {
     id: 3,
     begin: 31,
     final: 32,
-    end: 33
+    end: 33,
   },
   blue = {
     id: 4,
     begin: 41,
     final: 42,
-    end: 43
+    end: 43,
   };
 
-  const colorNames = {
-    r: 'red',
-    g: 'green',
-    y: 'yellow',
-    b: 'blue'
-  }
+const colorNames = {
+  r: "red",
+  g: "green",
+  y: "yellow",
+  b: "blue",
+};
 
 // prettier-ignore
 const DEFAULT_BOARD_LAYOUT = [
@@ -88,6 +87,24 @@ const LOCATION_BOARD_LAYOUT =  [
 ]
 
 // prettier-ignore
+const COORDINATES = [
+  [ 0,  0], [1,  0], [2,  0], [3,  0], [4,  0], [5,  0], [6,  0], [7,  0], [8,  0], [9,  0], [10,  0], [11,  0], [12,  0], [13,  0],
+  [ 0,  1], [1,  1], [2,  1], [3,  1], [4,  1], [5,  1], [6,  1], [7,  1], [8,  1], [9,  1], [10,  1], [11,  1], [12,  1], [13,  1],
+  [ 0,  2], [1,  2], [2,  2], [3,  2], [4,  2], [5,  2], [6,  2], [7,  2], [8,  2], [9,  2], [10,  2], [11,  2], [12,  2], [13,  2],
+  [ 0,  3], [1,  3], [2,  3], [3,  3], [4,  3], [5,  3], [6,  3], [7,  3], [8,  3], [9,  3], [10,  3], [11,  3], [12,  3], [13,  3],
+  [ 0,  4], [1,  4], [2,  4], [3,  4], [4,  4], [5,  4], [6,  4], [7,  4], [8,  4], [9,  4], [10,  4], [11,  4], [12,  4], [13,  4],
+  [ 0,  5], [1,  5], [2,  5], [3,  5], [4,  5], [5,  5], [6,  5], [7,  5], [8,  5], [9,  5], [10,  5], [11,  5], [12,  5], [13,  5],
+  [ 0,  6], [1,  6], [2,  6], [3,  6], [4,  6], [5,  6], [6,  6], [7,  6], [8,  6], [9,  6], [10,  6], [11,  6], [12,  6], [13,  6],
+  [ 0,  7], [1,  7], [2,  7], [3,  7], [4,  7], [5,  7], [6,  7], [7,  7], [8,  7], [9,  7], [10,  7], [11,  7], [12,  7], [13,  7],
+  [ 0,  8], [1,  8], [2,  8], [3,  8], [4,  8], [5,  8], [6,  8], [7,  8], [8,  8], [9,  8], [10,  8], [11,  8], [12,  8], [13,  8],
+  [ 0,  9], [1,  9], [2,  9], [3,  9], [4,  9], [5,  9], [6,  9], [7,  9], [8,  9], [9,  9], [10,  9], [11,  9], [12,  9], [13,  9],
+  [ 0, 10], [1, 10], [2, 10], [3, 10], [4, 10], [5, 10], [6, 10], [7, 10], [8, 10], [9, 10], [10, 10], [11, 10], [12, 10], [13, 10],
+  [ 0, 11], [1, 11], [2, 11], [3, 11], [4, 11], [5, 11], [6, 11], [7, 11], [8, 11], [9, 11], [10, 11], [11, 11], [12, 11], [13, 11],
+  [ 0, 12], [1, 12], [2, 12], [3, 12], [4, 12], [5, 12], [6, 12], [7, 12], [8, 12], [9, 12], [10, 12], [11, 12], [12, 12], [13, 12],
+  [ 0, 13], [1, 13], [2, 13], [3, 13], [4, 13], [5, 13], [6, 13], [7, 13], [8, 13], [9, 13], [10, 13], [11, 13], [12, 13], [13, 13],
+]
+
+// prettier-ignore
 const RED_PATH = [
   null, null, null, null, null,    9,   10,   11, null, null, null, null, null,
   null, 'r1', null, 'r2', null,    8, null,   12, null, null, null, null, null,
@@ -95,7 +112,7 @@ const RED_PATH = [
   null, 'r3', null, 'r4', null,    6, null,   14, null, null, null, null, null,
   null, null, null, null, null,    5, null,   15, null, null, null, null, null,
   null,    1,    2,    3,    4, null, null, null,   16,   17,   18,   19,   20,
-    43,   44,   45,   46,   48,   49, null, null, null, null, null, null,   21,
+    43,   44,   45,   46,   47,   48, null, null, null, null, null, null,   21,
     42,   41,   40,   39,   38, null, null, null,   26,   25,   24,   23,   22,
   null, null, null, null, null,   37, null,   27, null, null, null, null, null,
   null, null, null, null, null,   36, null,   28, null, null, null, null, null,
@@ -103,6 +120,23 @@ const RED_PATH = [
   null, null, null, null, null,   34, null,   30, null, null, null, null, null,
   null, null, null, null, null,   33,   32,   31, null, null, null, null, null,
 ];
+
+const red_path_orientation = {
+  LRS: [1, 2, 3, 9, 10, 16, 17, 18, 19, 43, 44, 45, 46, 47, 48],
+  RLS: [22, 23, 24, 25, 26, 31, 32, 38, 39, 40, 41],
+  DUS: [5, 6, 7, 8, 33, 34, 35, 36, 42],
+  UDS: [11, 12, 13, 14, 20, 21, 27, 28, 29, 30],
+  UDPD: [15],
+  UDND: [26],
+  DUPD: [4],
+  DUND: [37],
+  HOME: [
+    ["r1", [0, 36]],
+    ["r2", [-18, 36]],
+    ["r3", [0, 18]],
+    ["r4", [18, 18]],
+  ],
+};
 
 // prettier-ignore
 const GREEN_PATH = [
@@ -121,6 +155,18 @@ const GREEN_PATH = [
   null, null, null, null, null,   22,   21,   20, null, null, null, null, null, 
 ];
 
+const green_path_orientation = {
+  LRS: [5, 6, 7, 8, 33, 34, 35, 36, 42],
+  RLS: [11, 12, 13, 14, 20, 21, 27, 28, 29, 30],
+  DUS: [22, 23, 24, 25, 31, 32, 38, 39, 40, 41],
+  UDS: [1, 2, 3, 9, 10, 16, 17, 18, 19, 43, 44, 45, 46, 47, 48],
+  UDPD: [4],
+  UDND: [15],
+  DUPD: [37],
+  DUND: [26],
+  HOME: ["g1", "g2", "g3", "g4"],
+};
+
 // prettier-ignore
 const YELLOW_PATH = [
   null, null, null, null, null,   20,   21,   22, null, null, null, null, null,
@@ -137,6 +183,18 @@ const YELLOW_PATH = [
   null, 'y3', null, 'y4', null,    1,   44,   41, null, null, null, null, null,
   null, null, null, null, null, null,   43,   42, null, null, null, null, null, 
 ];
+
+const yellow_path_orientation = {
+  LRS: [11, 12, 13, 14, 20, 21, 27, 28, 29, 30],
+  RLS: [5, 6, 7, 8, 33, 34, 35, 36, 42],
+  DUS: [1, 2, 3, 9, 10, 16, 17, 18, 19, 43, 44, 45, 46, 47, 48],
+  UDS: [22, 23, 24, 25, 31, 32, 38, 39, 40, 41],
+  UDPD: [26],
+  UDND: [37],
+  DUPD: [15],
+  DUND: [4],
+  HOME: ["y1", "y2", "y3", "y4"],
+};
 
 // prettier-ignore
 const BLUE_PATH = [
@@ -155,12 +213,24 @@ const BLUE_PATH = [
   null, null, null, null, null,   11,   10,    9, null, null, null, null, null, 
 ];
 
+const blue_path_orientation = {
+  LRS: [22, 23, 24, 25, 32, 38, 39, 40, 41],
+  RLS: [1, 2, 3, 9, 10, 16, 17, 18, 19, 43, 44, 45, 46, 47, 48],
+  DUS: [11, 12, 13, 14, 20, 21, 27, 28, 29, 30],
+  UDS: [5, 6, 7, 8, 33, 34, 35, 36, 42],
+  UDPD: [37],
+  UDND: [4],
+  DUPD: [26],
+  DUND: [15],
+  HOME: [["b1", ["DUPD", "DUPD"]], ["b2", ["DUS", "DUS"]], ["b3", []], ["b4"]],
+};
+
 const path_types = {
-  home: ['p1', 'p2', 'p3', 'p4'],
+  home: ["p1", "p2", "p3", "p4"],
   begin: [1],
-  final: [44,45,46,47],
-  end: [48]
-}
+  final: [44, 45, 46, 47],
+  end: [48],
+};
 
 /*
   where[0] -> begin
@@ -186,7 +256,8 @@ const cell_obj = {
 const safe_cell_obj = {
   where: [false, false, false],
   safe: true,
-  style: "cell w-8 h-8 p-1 text-center outline-black bg-safe-cell bg-center bg-contain",
+  style:
+    "cell w-8 h-8 p-1 text-center outline-black bg-safe-cell bg-center bg-contain",
   has: [],
   pos: {},
 };
@@ -215,20 +286,83 @@ const end_cell_obj = {
   pos: {},
 };
 
+const move_animation_classnames = {
+  base: " transition-transform duration-300 transform ",
+  types: [
+    {
+      name: "DUPD",
+      type: [1, -1],
+      value: " translate-x-9 -translate-y-9",
+    },
+    {
+      name: "DUND",
+      type: [-1, -1],
+      value: " -translate-x-9 -translate-y-9",
+    },
+    {
+      name: "UDPD",
+      type: [1, 1],
+      value: " translate-x-9 translate-y-9",
+    },
+    {
+      name: "UDND",
+      type: [-1, 1],
+      value: " -translate-x-9 translate-y-9",
+    },
+    {
+      name: "DUS",
+      type: [0, -1],
+      value: " -translate-y-9",
+    },
+    {
+      name: "UDS",
+      type: [0, 1],
+      value: " translate-y-9",
+    },
+    {
+      name: "LRS",
+      type: [1, 0],
+      value: " translate-x-9",
+    },
+    {
+      name: "RLS",
+      type: [-1, 0],
+      value: " -translate-x-9",
+    },
+    {
+      name: "HOME",
+    },
+  ],
+};
 
-// const movement_css = {
-//   diagonal: [{
-//     type: [1,-1],
-//     value: " transition-transform duration-300 transform translate-x-9 -translate-y-9",
-//   },{
-//     type: []
-//   }],
-//   right: '',
-//   left: '',
-//   top: '',
-//   bottom: ''
-// };
+const generateTranslate = (start, end) => {
+  const x = end[0] - start[0],
+    y = end[1] - start[1];
 
+  let x_m = x * 9,
+    y_m = y * 9,
+    x_s,
+    y_s;
+
+  if (x_m >= 0) {
+    x_s = x_s === 0 ? "" : " translate-x-" + x_m;
+  } else {
+    x_s = " -translate-x-" + (-1 * x_m);
+  }
+
+  if (y_m >= 0) {
+    y_s = y_s === 0 ? "" : " translate-y-" + y_m;
+  } else {
+    y_s = " -translate-y-" + (-1 * y_m);
+  }
+
+  return " transition-transform duration-300 transform " + x_s + y_s;
+};
+
+const xy = (arr, e) => {
+  const pos = arr.findIndex((i) => i === e);
+  return [pos % 13, Math.ceil(pos / 13) - 1];
+};
 
 const Constants = {
   DEFAULT_BOARD_LAYOUT,
@@ -238,6 +372,10 @@ const Constants = {
   GREEN_PATH,
   YELLOW_PATH,
   BLUE_PATH,
+  red_path_orientation,
+  green_path_orientation,
+  yellow_path_orientation,
+  blue_path_orientation,
   path,
   safe,
   red,
@@ -251,7 +389,10 @@ const Constants = {
   safe_cell_obj,
   begin_cell_obj,
   final_cell_obj,
-  end_cell_obj
+  end_cell_obj,
+  move_animation_classnames,
+  generateTranslate,
+  xy,
 };
 
 export default Constants;

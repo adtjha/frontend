@@ -8,6 +8,16 @@ module.exports = {
       },
       spacing: {
         110: "28rem",
+        18: "4.5rem",
+        27: "6.75rem",
+        45: "11.25rem",
+        54: "13.5rem",
+        63: "15.75rem",
+        81: "20.25rem",
+        90: "22.5rem",
+        99: "24.75rem",
+        108: "27rem",
+        117: "29.25",
       },
       gridTemplateColumns: {
         13: "repeat(13, minmax(0, 2rem))",

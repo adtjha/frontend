@@ -1,10 +1,10 @@
-## Doing 
-- Validating Fen String for board.
-## Todo
- - Create Movement using `move()` function
+# Frontend
 
-## Done
-- Board UI
-- Piece UI
+## What's done
+- pieces Moving, according to fen,
+- initial state being stored using fen string.
 
-## Ideas
+## What's remaining
+- integrating with the backend.
+- pgn move object generation and being sent to backend.
+- 
