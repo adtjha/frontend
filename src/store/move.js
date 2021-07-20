@@ -12,7 +12,6 @@ _.forIn(extractObject(initialState.fen), (v, k) => {
 export function movesReducer(state = initialState, action) {
   switch (action.type) {
     case "move/red":
-      console.log(state.dice);
       return {
         ...state,
         red: state.red.map((p, i) =>
