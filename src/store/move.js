@@ -2,7 +2,7 @@ import extractObject from "../components/functions/extractObject";
 import _ from "lodash";
 
 const initialState = {
-  fen: "r0r0r04r0/g21g0g0g0/y0y0y0y0/b0b0b0b13 r 4",
+  fen: "r0r0r0r0/g0g0g0g0/y0y0y0y0/b0b0b0b0 r 4",
 };
 
 _.forIn(extractObject(initialState.fen), (v, k) => {

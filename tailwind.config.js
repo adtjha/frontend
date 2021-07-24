@@ -1,3 +1,5 @@
+const colors = require("tailwindcss/colors");
+
 module.exports = {
   purge: ["./src/**/*.{js,jsx,ts,tsx}", "./public/index.html"],
   darkMode: false, // or 'media' or 'class'
@@ -50,6 +52,7 @@ module.exports = {
         11: "11",
         12: "12",
         13: "13",
+        14: "14",
       },
       gridColumnEnd: {
         8: "8",
@@ -58,10 +61,19 @@ module.exports = {
         11: "11",
         12: "12",
         13: "13",
+        14: "14",
       },
       backgroundImage: (theme) => ({
         "safe-cell": "url(./images/safe.svg)",
       }),
+      rotate: {
+        "-360": "-360deg",
+        360: "360deg",
+      },
+      colors: {
+        blueGray: colors.blueGray,
+        antiqueWhite: "#faebd7",
+      },
     },
   },
   variants: {

@@ -89,10 +89,10 @@ const LOCATION_BOARD_LAYOUT =  [
 // prettier-ignore
 const RED_PATH = [
   null, null, null, null, null,    9,   10,   11, null, null, null, null, null,
-  null, 'r1', null, 'r2', null,    8, null,   12, null, null, null, null, null,
+  null, null, null, null, null,    8, null,   12, null, null, null, null, null,
   null, null, null, null, null,    7, null,   13, null, null, null, null, null,
-  null, 'r3', null, 'r4', null,    6, null,   14, null, null, null, null, null,
-  null, null, null, null, null,    5, null,   15, null, null, null, null, null,
+  null, null, null, null, null,    6, null,   14, null, null, null, null, null,
+  null, 'r1', 'r2', 'r3', 'r4',    5, null,   15, null, null, null, null, null,
   null,    1,    2,    3,    4, null, null, null,   16,   17,   18,   19,   20,
     43,   44,   45,   46,   47,   48, null, null, null, null, null, null,   21,
     42,   41,   40,   39,   38, null, null, null,   26,   25,   24,   23,   22,
@@ -106,13 +106,13 @@ const RED_PATH = [
 // prettier-ignore
 const GREEN_PATH = [
   null, null, null, null, null,   42,   43, null, null, null, null, null, null,
-  null, null, null, null, null,   41,   44,    1, null, 'g1', null, 'g2', null,
-  null, null, null, null, null,   40,   45,    2, null, null, null, null, null,
-  null, null, null, null, null,   39,   46,    3, null, 'g3', null, 'g4', null,
-  null, null, null, null, null,   38,   47,    4, null, null, null, null, null,
-  33,   34,   35,   36,   37, null,   48, null,    5,    6,    7,    8,    9,
-  32, null, null, null, null, null, null, null, null, null, null, null,   10,
-  31,   30,   29,   28,   27, null, null, null,   15,   14,   13,   12,   11,
+  null, null, null, null, null,   41,   44,    1, 'g1', null, null, null, null,
+  null, null, null, null, null,   40,   45,    2, 'g2', null, null, null, null,
+  null, null, null, null, null,   39,   46,    3, 'g3', null, null, null, null,
+  null, null, null, null, null,   38,   47,    4, 'g4', null, null, null, null,
+    33,   34,   35,   36,   37, null,   48, null,    5,    6,    7,    8,    9,
+    32, null, null, null, null, null, null, null, null, null, null, null,   10,
+    31,   30,   29,   28,   27, null, null, null,   15,   14,   13,   12,   11,
   null, null, null, null, null,   26, null,   16, null, null, null, null, null,
   null, null, null, null, null,   25, null,   17, null, null, null, null, null,
   null, null, null, null, null,   24, null,   18, null, null, null, null, null,
@@ -127,13 +127,13 @@ const YELLOW_PATH = [
   null, null, null, null, null,   18, null,   24, null, null, null, null, null,
   null, null, null, null, null,   17, null,   25, null, null, null, null, null,
   null, null, null, null, null,   16, null,   26, null, null, null, null, null,
-  11,   12,   13,   14,   15, null, null, null,   27,   28,   29,   30,   31,
-  10, null, null, null, null, null, null, null, null, null, null, null,   32,
-  9,    8,    7,    6,    5, null,   48, null,   37,   36,   35,   34,   33,
-  null, null, null, null, null,    4,   47,   38, null, null, null, null, null,
-  null, 'y1', null, 'y2', null,    3,   46,   39, null, null, null, null, null,
-  null, null, null, null, null,    2,   45,   40, null, null, null, null, null,
-  null, 'y3', null, 'y4', null,    1,   44,   41, null, null, null, null, null,
+    11,   12,   13,   14,   15, null, null, null,   27,   28,   29,   30,   31,
+    10, null, null, null, null, null, null, null, null, null, null, null,   32,
+    9,    8,    7,    6,    5,  null,   48, null,   37,   36,   35,   34,   33,
+  null, null, null, null, 'y4',    4,   47,   38, null, null, null, null, null,
+  null, null, null, null, 'y3',    3,   46,   39, null, null, null, null, null,
+  null, null, null, null, 'y2',    2,   45,   40, null, null, null, null, null,
+  null, null, null, null, 'y1',    1,   44,   41, null, null, null, null, null,
   null, null, null, null, null, null,   43,   42, null, null, null, null, null, 
 ];
 
@@ -144,15 +144,29 @@ const BLUE_PATH = [
   null, null, null, null, null,   29, null,   35, null, null, null, null, null,
   null, null, null, null, null,   28, null,   36, null, null, null, null, null,
   null, null, null, null, null,   27, null,   37, null, null, null, null, null,
-  22,   23,   24,   25,   26, null, null, null,   38,   39,   40,   41,   42,
+    22,   23,   24,   25,   26, null, null, null,   38,   39,   40,   41,   42,
     21, null, null, null, null, null, null,   48,   47,   46,   45,   44,   43,
     20,   19,   18,   17,   16, null, null, null,    4,    3,    2,    1, null,
-  null, null, null, null, null,   15, null,    5, null, null, null, null, null,
-  null, null, null, null, null,   14, null,    6, null, 'b1', null, 'b2', null,
+  null, null, null, null, null,   15, null,    5, 'b4', 'b3', 'b2', 'b1', null,
+  null, null, null, null, null,   14, null,    6, null, null, null, null, null,
   null, null, null, null, null,   13, null,    7, null, null, null, null, null,
-  null, null, null, null, null,   12, null,    8, null, 'b3', null, 'b4', null,
+  null, null, null, null, null,   12, null,    8, null, null, null, null, null,
   null, null, null, null, null,   11,   10,    9, null, null, null, null, null, 
 ];
+
+// prettier-ignore
+const cellsNotToDraw = [
+  'aa', 'ab', 'ac', 'ad', 'ae', "ai", 'aj', 'ak', 'al', 'am',
+  'ba', 'bb', 'bc', 'bd', 'be', 'bj', 'bk', 'bl', 'bm',
+  'ca', 'cb', 'cc', 'cd', 'ce', 'cj', 'ck', 'cl', 'cm',
+  'da', 'db', 'dc', 'dd', 'de', 'dj', 'dk', 'dl', 'dm',
+  'ea', 'ej', 'ek', 'el', 'em', 'ff', 'fh', 'gg', 'hf', 'hh',
+  'ia', 'ib', 'ic', 'id', 'im',
+  'ja', 'jb', 'jc', 'jd', 'ji', 'jj', 'jk', 'jl', 'jm',
+  'ka', 'kb', 'kc', 'kd', 'ki', 'kj', 'kk', 'kl', 'km',
+  'la', 'lb', 'lc', 'ld', 'li', 'lj', 'lk', 'll', 'lm',
+  'ma', 'mb', 'mc', 'md', 'me', 'mi', 'mk', 'mj', 'ml', 'mm',
+]
 
 const path_types = {
   home: ["p1", "p2", "p3", "p4"],
@@ -169,7 +183,7 @@ where[2] -> end
 const empty_cell_obj = {
   where: [false, false, false],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center border-2 border-dotted",
+  style: "cell w-8 h-8 p-1 text-center border-2 border-dashed rounded",
   has: [],
   pos: {},
 };
@@ -177,7 +191,7 @@ const empty_cell_obj = {
 const cell_obj = {
   where: [false, false, false],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center outline-black bg-gray-100",
+  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md bg-white ",
   has: [],
   pos: {},
 };
@@ -186,7 +200,7 @@ const safe_cell_obj = {
   where: [false, false, false],
   safe: true,
   style:
-    "cell w-8 h-8 p-1 text-center outline-black bg-safe-cell bg-center bg-contain",
+    "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md bg-white bg-safe-cell bg-center bg-contain",
   has: [],
   pos: {},
 };
@@ -194,7 +208,7 @@ const safe_cell_obj = {
 const begin_cell_obj = {
   where: [true, false, false],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center outline-black",
+  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md ",
   has: [],
   pos: {},
 };
@@ -202,7 +216,7 @@ const begin_cell_obj = {
 const final_cell_obj = {
   where: [false, true, false],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center outline-black",
+  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md ",
   has: [],
   pos: {},
 };
@@ -210,58 +224,9 @@ const final_cell_obj = {
 const end_cell_obj = {
   where: [false, false, true],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center outline-black",
+  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md ",
   has: [],
   pos: {},
-};
-
-const move_animation_classnames = {
-  base: " transition-transform duration-300 transform ",
-  types: [
-    {
-      name: "DUPD",
-      type: [1, -1],
-      value: " translate-x-9 -translate-y-9",
-    },
-    {
-      name: "DUND",
-      type: [-1, -1],
-      value: " -translate-x-9 -translate-y-9",
-    },
-    {
-      name: "UDPD",
-      type: [1, 1],
-      value: " translate-x-9 translate-y-9",
-    },
-    {
-      name: "UDND",
-      type: [-1, 1],
-      value: " -translate-x-9 translate-y-9",
-    },
-    {
-      name: "DUS",
-      type: [0, -1],
-      value: " -translate-y-9",
-    },
-    {
-      name: "UDS",
-      type: [0, 1],
-      value: " translate-y-9",
-    },
-    {
-      name: "LRS",
-      type: [1, 0],
-      value: " translate-x-9",
-    },
-    {
-      name: "RLS",
-      type: [-1, 0],
-      value: " -translate-x-9",
-    },
-    {
-      name: "HOME",
-    },
-  ],
 };
 
 const generateTranslate = (start, end) => {
@@ -301,6 +266,7 @@ const Constants = {
   GREEN_PATH,
   YELLOW_PATH,
   BLUE_PATH,
+  cellsNotToDraw,
   path,
   safe,
   red,
@@ -315,7 +281,6 @@ const Constants = {
   begin_cell_obj,
   final_cell_obj,
   end_cell_obj,
-  move_animation_classnames,
   generateTranslate,
   xy,
 };

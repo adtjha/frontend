@@ -46,6 +46,7 @@ function placeCellObjects(cellid, i, color) {
       // safe cell
       cellObject = _.cloneDeep(Constants["safe_cell_obj"]);
     } else if (cellid === "0") {
+      // empty cell
       cellObject = _.cloneDeep(Constants["empty_cell_obj"]);
     }
   }
