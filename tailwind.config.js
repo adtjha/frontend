@@ -23,9 +23,11 @@ module.exports = {
       },
       gridTemplateColumns: {
         13: "repeat(13, minmax(0, 2rem))",
+        sm13: "repeat(13, minmax(0, 1.5rem))",
       },
       gridTemplateRows: {
         13: "repeat(13, minmax(0, 2rem))",
+        sm13: "repeat(13, minmax(0, 1.5rem))",
       },
       gridRowStart: {
         8: "8",

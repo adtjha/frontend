@@ -2,9 +2,12 @@ import red from "../images/red.gif";
 import green from "../images/green.gif";
 import yellow from "../images/yellow.gif";
 import blue from "../images/blue.gif";
+import React from "react";
+
+{/* <div className="absolute bg-transparent z-10 w-max grid grid-cols-13 grid-rows-13 gap-0.5 lg:gap-2 justify-items-stretch"> */}
 
 export const videoChat = (
-    <div className="absolute bg-transparent z-10 w-max grid grid-cols-13 grid-rows-13 gap-0.5 lg:gap-2 justify-items-stretch">
+    <React.Fragment>
         <div className="col-start-1 col-end-6 row-start-1 row-end-5 bg-transparent border-2 border-double border-red-400 rounded-2xl overflow-hidden shadow-md lg:mb-1 lg:mr-1">
             <img
                 className="relative transform scale-150 object-fill object-bottom"
@@ -33,5 +36,5 @@ export const videoChat = (
                 alt="blue"
             ></img>
         </div>
-    </div>
+    </React.Fragment>
 )

@@ -4,6 +4,7 @@ import create2Darray from "./functions/create2Darray";
 import { videoChat } from "./videoChat";
 import Dice from "./Dice";
 import { useGeolocation } from "react-use";
+import React from "react";
 
 const Board = (props) => {
   const geoState = useGeolocation();
@@ -17,17 +18,17 @@ const Board = (props) => {
   const pos = [...create2Darray(data)];
 
   return (
-      <div>
-          <div className="board block w-max h-max max-w-full  lg:p-4 m-auto p-1 border-2 border-solid rounded-2xl shadow-md">
-              {videoChat}
-              <div className="relative z-20 w-max max-w-full grid grid-cols-13 auto-rows-auto gap-1 lg:gap-2 justify-items-stretch">
+      <React.Fragment>
+          <div className="board block lg:w-max lg:h-max lg:max-w-full  lg:p-4 m-auto p-1 border-2 border-solid rounded-2xl shadow-md">
+              <div className="relative z-20 lg:w-max lg:max-w-full grid grid-cols-sm13 lg:grid-cols-13 grid-rows-sm13 lg:grid-rows-13 md:gap-1 lg:gap-2 justify-items-stretch">
                   {pos.map((cell) => (
                       <Cell key={cell.id} data={cell} />
-                  ))}
+                      ))}
+                    {videoChat}
               </div>
           </div>
           <Dice num={data.dice} />
-      </div>
+      </React.Fragment>
   )
 };
 

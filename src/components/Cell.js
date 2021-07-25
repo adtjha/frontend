@@ -3,9 +3,9 @@ import Piece from './Piece'
 import Constant from './Constants'
 
 const Cell = (props) => {
-    let className, piece
+    let styles, piece
 
-    className = props.data.style
+    styles = props.data.style
     if (props.data.has) {
         if (props.data.has.length > 1) {
             piece = props.data.has.map((e) => {
@@ -32,12 +32,12 @@ const Cell = (props) => {
                 )
             })
         }
-        className += ' flex justify-center items-center flex-wrap '
+        styles += ' flex justify-center items-center flex-wrap '
     }
-    if (className) {
+    if (styles) {
         Constant.cellsNotToDraw.forEach((e) => {
             if (props.data.id === e) {
-                className = 'cell w-8 h-8 p-1 '
+                styles = undefined
             }
         })
     }
@@ -47,9 +47,13 @@ const Cell = (props) => {
     }
 
     return (
-        <div className={className} onClick={handleClick}>
-            {piece}
-        </div>
+        <React.Fragment>
+            {styles ? (
+                <div className={styles} onClick={handleClick}>
+                    {piece}
+                </div>
+            ) : null}
+        </React.Fragment>
     )
 }
 

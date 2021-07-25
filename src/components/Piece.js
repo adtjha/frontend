@@ -30,11 +30,11 @@ function Piece(props) {
   }
 
   if (_.inRange(props.multiple, 1, 2)) {
-    className = "w-4 h-4";
+    className = "w-3 h-3 lg:w-4 lg:h-4";
   } else if (_.inRange(props.multiple, 2, 4)) {
-    className = "w-3 h-3";
+    className = "w-2 h-2 lg:w-3 lg:h-3";
   } else if (_.inRange(props.multiple, 4, 6)) {
-    className = "w-2 h-2";
+    className = "w-1 h-1 lg:w-2 lg:h-2";
   }
 
   const handleClick = (e) => {

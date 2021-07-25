@@ -76,7 +76,7 @@ const LandingPage = () => {
                     static
                     className="absolute top-0 inset-x-0 p-2 transition transform origin-top-right md:hidden"
                   >
-                    <div className="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
+                    <div className="rounded-lg shadow-md bg-antiqueWhite ring-1 ring-black ring-opacity-5 overflow-hidden">
                       <div className="px-5 pt-4 flex items-center justify-between">
                         <div>
                           <img
@@ -86,7 +86,7 @@ const LandingPage = () => {
                           />
                         </div>
                         <div className="-mr-2">
-                          <Popover.Button className="bg-white rounded-md p-2 inline-flex items-center justify-center text-blueGray-400 hover:text-blueGray-500 hover:bg-blueGray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blueGray-500">
+                          <Popover.Button className="bg-antiqueWhite rounded-md p-2 inline-flex items-center justify-center text-blueGray-400 hover:text-blueGray-500 hover:bg-blueGray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-blueGray-500">
                             <span className="sr-only">Close main menu</span>
                             <XIcon className="h-6 w-6" aria-hidden="true" />
                           </Popover.Button>

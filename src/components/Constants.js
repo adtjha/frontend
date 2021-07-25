@@ -180,10 +180,12 @@ where[0] -> begin
 where[1] -> final
 where[2] -> end
 */
+const cell = "cell lg:w-8 lg:h-8 p-0.5 lg:p-1"
+
 const empty_cell_obj = {
   where: [false, false, false],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center border-2 border-dashed rounded",
+  style: cell+ " text-center border-2 border-dashed rounded",
   has: [],
   pos: {},
 };
@@ -191,7 +193,7 @@ const empty_cell_obj = {
 const cell_obj = {
   where: [false, false, false],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md bg-white ",
+  style: cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md bg-white ",
   has: [],
   pos: {},
 };
@@ -200,23 +202,25 @@ const safe_cell_obj = {
   where: [false, false, false],
   safe: true,
   style:
-    "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md bg-white bg-safe-cell bg-center bg-contain",
+    cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md bg-white bg-safe-cell bg-center bg-contain",
   has: [],
   pos: {},
 };
 
 const begin_cell_obj = {
-  where: [true, false, false],
-  safe: false,
-  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md ",
-  has: [],
-  pos: {},
-};
+    where: [true, false, false],
+    safe: false,
+    style:
+        cell +
+        ' text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md ',
+    has: [],
+    pos: {},
+}
 
 const final_cell_obj = {
   where: [false, true, false],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md ",
+  style: cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md ",
   has: [],
   pos: {},
 };
@@ -224,7 +228,7 @@ const final_cell_obj = {
 const end_cell_obj = {
   where: [false, false, true],
   safe: false,
-  style: "cell w-8 h-8 p-1 text-center border-0 rounded shadow-md ",
+  style: cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md ",
   has: [],
   pos: {},
 };
