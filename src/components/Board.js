@@ -3,18 +3,25 @@ import Cell from "./Cell";
 import create2Darray from "./functions/create2Darray";
 import { videoChat } from "./videoChat";
 import Dice from "./Dice";
-import { useGeolocation } from "react-use";
 import React from "react";
+// import { io } from 'socket.io-client'
+import { getBlue, getGreen, getRed, getYellow } from "../store/move";
+import { getDice } from "../store/dice";
+// import { useGeolocation } from "react-use";
+
+// const socket = io('http://localhost:8888')
+// socket.on('connection', () => {console.log("Connected to backend")})
 
 const Board = (props) => {
-  const geoState = useGeolocation();
+  
   const data = {
-    red: useSelector((state) => state.move.red),
-    green: useSelector((state) => state.move.green),
-    yellow: useSelector((state) => state.move.yellow),
-    blue: useSelector((state) => state.move.blue),
-    dice: useSelector((state) => state.move.dice),
+    red: useSelector(getRed),
+    green: useSelector(getGreen),
+    yellow: useSelector(getYellow),
+    blue: useSelector(getBlue),
+    dice: useSelector(getDice),
   };
+
   const pos = [...create2Darray(data)];
 
   return (

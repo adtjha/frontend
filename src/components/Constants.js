@@ -1,36 +1,36 @@
 const path = 6,
-  safe = 5,
-  red = {
-    id: 1,
-    begin: 11,
-    final: 12,
-    end: 13,
-  },
-  green = {
-    id: 2,
-    begin: 21,
-    final: 22,
-    end: 23,
-  },
-  yellow = {
-    id: 3,
-    begin: 31,
-    final: 32,
-    end: 33,
-  },
-  blue = {
-    id: 4,
-    begin: 41,
-    final: 42,
-    end: 43,
-  };
+    safe = 5,
+    red = {
+        id: 1,
+        begin: 11,
+        final: 12,
+        end: 13,
+    },
+    green = {
+        id: 2,
+        begin: 21,
+        final: 22,
+        end: 23,
+    },
+    yellow = {
+        id: 3,
+        begin: 31,
+        final: 32,
+        end: 33,
+    },
+    blue = {
+        id: 4,
+        begin: 41,
+        final: 42,
+        end: 43,
+    }
 
 const colorNames = {
-  r: "red",
-  g: "green",
-  y: "yellow",
-  b: "blue",
-};
+    r: 'red',
+    g: 'green',
+    y: 'yellow',
+    b: 'blue',
+}
 
 // prettier-ignore
 const DEFAULT_BOARD_LAYOUT = [
@@ -169,43 +169,46 @@ const cellsNotToDraw = [
 ]
 
 const path_types = {
-  home: ["p1", "p2", "p3", "p4"],
-  begin: [1],
-  final: [44, 45, 46, 47],
-  end: [48],
-};
+    home: ['p1', 'p2', 'p3', 'p4'],
+    begin: [1],
+    final: [44, 45, 46, 47],
+    end: [48],
+}
 
 /*
 where[0] -> begin
 where[1] -> final
 where[2] -> end
 */
-const cell = "cell lg:w-8 lg:h-8 p-0.5 lg:p-1"
+const cell = 'cell lg:w-8 lg:h-8 p-0.5 lg:p-1'
 
 const empty_cell_obj = {
-  where: [false, false, false],
-  safe: false,
-  style: cell+ " text-center border-2 border-dashed rounded",
-  has: [],
-  pos: {},
-};
+    where: [false, false, false],
+    safe: false,
+    style: cell + ' text-center border-2 border-dashed rounded',
+    has: [],
+    pos: {},
+}
 
 const cell_obj = {
-  where: [false, false, false],
-  safe: false,
-  style: cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md bg-white ",
-  has: [],
-  pos: {},
-};
+    where: [false, false, false],
+    safe: false,
+    style:
+        cell +
+        ' text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md bg-white ',
+    has: [],
+    pos: {},
+}
 
 const safe_cell_obj = {
-  where: [false, false, false],
-  safe: true,
-  style:
-    cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md bg-white bg-safe-cell bg-center bg-contain",
-  has: [],
-  pos: {},
-};
+    where: [false, false, false],
+    safe: true,
+    style:
+        cell +
+        ' text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md bg-white bg-safe-cell bg-center bg-contain',
+    has: [],
+    pos: {},
+}
 
 const begin_cell_obj = {
     where: [true, false, false],
@@ -218,75 +221,79 @@ const begin_cell_obj = {
 }
 
 const final_cell_obj = {
-  where: [false, true, false],
-  safe: false,
-  style: cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md ",
-  has: [],
-  pos: {},
-};
+    where: [false, true, false],
+    safe: false,
+    style:
+        cell +
+        ' text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md ',
+    has: [],
+    pos: {},
+}
 
 const end_cell_obj = {
-  where: [false, false, true],
-  safe: false,
-  style: cell+" text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md ",
-  has: [],
-  pos: {},
-};
+    where: [false, false, true],
+    safe: false,
+    style:
+        cell +
+        ' text-center border-2 border-gray-200 lg:border-0 rounded lg:shadow-md ',
+    has: [],
+    pos: {},
+}
 
 const generateTranslate = (start, end) => {
-  const x = end[0] - start[0],
-    y = end[1] - start[1];
+    const x = end[0] - start[0],
+        y = end[1] - start[1]
 
-  let x_m = x * 9,
-    y_m = y * 9,
-    x_s,
-    y_s;
+    let x_m = x * 9,
+        y_m = y * 9,
+        x_s,
+        y_s
 
-  if (x_m >= 0) {
-    x_s = x_s === 0 ? "" : " translate-x-" + x_m;
-  } else {
-    x_s = " -translate-x-" + -1 * x_m;
-  }
+    if (x_m >= 0) {
+        x_s = x_s === 0 ? '' : ' translate-x-' + x_m
+    } else {
+        x_s = ' -translate-x-' + -1 * x_m
+    }
 
-  if (y_m >= 0) {
-    y_s = y_s === 0 ? "" : " translate-y-" + y_m;
-  } else {
-    y_s = " -translate-y-" + -1 * y_m;
-  }
+    if (y_m >= 0) {
+        y_s = y_s === 0 ? '' : ' translate-y-' + y_m
+    } else {
+        y_s = ' -translate-y-' + -1 * y_m
+    }
 
-  return " transition-transform duration-300 transform " + x_s + y_s;
-};
+    return ' transition-transform duration-300 transform ' + x_s + y_s
+}
 
 const xy = (arr, e) => {
-  const pos = arr.findIndex((i) => i === e);
-  return [pos % 13, Math.ceil(pos / 13) - 1];
-};
+    const pos = arr.findIndex((i) => i === e)
+    return [pos % 13, Math.ceil(pos / 13) - 1]
+}
 
 const Constants = {
-  DEFAULT_BOARD_LAYOUT,
-  DEFAULT_CELL_LAYOUT,
-  LOCATION_BOARD_LAYOUT,
-  RED_PATH,
-  GREEN_PATH,
-  YELLOW_PATH,
-  BLUE_PATH,
-  cellsNotToDraw,
-  path,
-  safe,
-  red,
-  green,
-  yellow,
-  blue,
-  colorNames,
-  path_types,
-  empty_cell_obj,
-  cell_obj,
-  safe_cell_obj,
-  begin_cell_obj,
-  final_cell_obj,
-  end_cell_obj,
-  generateTranslate,
-  xy,
-};
+    DEFAULT_BOARD_LAYOUT,
+    DEFAULT_CELL_LAYOUT,
+    LOCATION_BOARD_LAYOUT,
+    RED_PATH,
+    GREEN_PATH,
+    YELLOW_PATH,
+    BLUE_PATH,
+    cellsNotToDraw,
+    path,
+    safe,
+    red,
+    green,
+    yellow,
+    blue,
+    colorNames,
+    path_types,
+    empty_cell_obj,
+    cell_obj,
+    safe_cell_obj,
+    begin_cell_obj,
+    final_cell_obj,
+    end_cell_obj,
+    generateTranslate,
+    xy,
+}
 
-export default Constants;
+export default Constants
