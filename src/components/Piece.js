@@ -7,7 +7,13 @@ import _ from 'lodash'
 import { useDispatch, useSelector } from 'react-redux'
 import Constants from './Constants'
 import { move_piece } from '../store/move'
-import { getColor, getChance, getPieceOut, set_piece_out } from '../store/user'
+import {
+    getColor,
+    getChance,
+    getPieceOut,
+    set_piece_out,
+    set_chance,
+} from '../store/user'
 import { getDice, rolled, set_rolled } from '../store/dice'
 
 function Piece(props) {
@@ -52,7 +58,7 @@ function Piece(props) {
     }
 
     const updatePosition = () => {
-        if(!isPieceOut) {
+        if (!isPieceOut) {
             dispatch(set_piece_out(true))
         }
         setTimeout(() => {
@@ -65,17 +71,19 @@ function Piece(props) {
         if (color === userColor && isChance && hasRolled) {
             console.log(props, position)
             if (props.name === position) {
-                // start, move only if six
+                // start move, only if six
                 if (dice === 6) {
                     animate(e)
                     updatePosition()
+                    dispatch(set_chance(true))
                 } else {
-
-                    dispatch(set_rolled(false))
+                    // chance finished
+                    dispatch(set_chance(false))
                 }
             } else if (props.name !== position) {
                 animate(e)
                 updatePosition()
+                dispatch(set_chance(true))
             }
         } else {
             console.log('NOT ALLOWED')

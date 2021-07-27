@@ -7,7 +7,13 @@ import three from '../images/dice/3.svg'
 import four from '../images/dice/4.svg'
 import five from '../images/dice/5.svg'
 import six from '../images/dice/6.svg'
-import { getShowing, rolled, set_dice, set_rolled, set_showing } from '../store/dice'
+import {
+    getShowing,
+    rolled,
+    set_dice,
+    set_rolled,
+    set_showing,
+} from '../store/dice'
 
 const Dice = (props) => {
     let isShowing = useSelector(getShowing)
@@ -16,6 +22,19 @@ const Dice = (props) => {
     const srcList = [one, two, three, four, five, six]
 
     const dispatch = useDispatch()
+
+    const handleClick = () => {
+        if (!hasRolled) {
+            dispatch(set_showing(false))
+            setTimeout(() => {
+                dispatch(set_dice())
+                dispatch(set_rolled(true))
+                dispatch(set_showing(true))
+            }, 500)
+        } else {
+            console.log('PLAY MOVE, DICE ROLLED ONCE', hasRolled)
+        }
+    }
 
     return (
         <div className="flex flex-col items-center py-8">
@@ -32,18 +51,7 @@ const Dice = (props) => {
                 >
                     <div
                         className="w-16 font-mono text-4xl m-auto text-center p-0 text-gray-400"
-                        onClick={() => {
-                            if (!hasRolled) {
-                                dispatch(set_showing(false))
-                                setTimeout(() => {
-                                    dispatch(set_dice())
-                                    dispatch(set_rolled(true))
-                                    dispatch(set_showing(true))
-                                }, 500)
-                            } else {
-                                console.log("PLAY MOVE, DICE ROLLED ONCE", hasRolled)
-                            }
-                        }}
+                        onClick={handleClick}
                     >
                         <img src={srcList[props.num - 1]} alt={props.num}></img>
                     </div>

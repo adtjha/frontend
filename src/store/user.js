@@ -9,7 +9,9 @@ const initialState = {
 export function usersReducer(state = initialState, action) {
     switch (action.type) {
         case PIECE:
-            return { ...state, pieceOut: action.payload}
+            return { ...state, pieceOut: action.payload }
+        case CHANCE:
+            return { ...state, chance: action.payload }
         default:
             return state
     }
@@ -22,9 +24,14 @@ export const getPieceOut = (state) => state.user.pieceOut
 
 // action types
 export const PIECE = 'piece'
+export const CHANCE = 'chance'
 
 // action creators
 export const set_piece_out = (state) => ({
     type: PIECE,
-    payload: state
+    payload: state,
+})
+export const set_chance = (state) => ({
+    type: CHANCE,
+    payload: state,
 })
