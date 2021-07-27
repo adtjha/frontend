@@ -7,10 +7,11 @@ import three from '../images/dice/3.svg'
 import four from '../images/dice/4.svg'
 import five from '../images/dice/5.svg'
 import six from '../images/dice/6.svg'
-import { getShowing, set_dice, set_rolled, set_showing } from '../store/dice'
+import { getShowing, rolled, set_dice, set_rolled, set_showing } from '../store/dice'
 
 const Dice = (props) => {
     let isShowing = useSelector(getShowing)
+    let hasRolled = useSelector(rolled)
 
     const srcList = [one, two, three, four, five, six]
 
@@ -32,12 +33,16 @@ const Dice = (props) => {
                     <div
                         className="w-16 font-mono text-4xl m-auto text-center p-0 text-gray-400"
                         onClick={() => {
-                            dispatch(set_showing(false))
-                            setTimeout(() => {
-                                dispatch(set_dice())
-                                dispatch(set_rolled(true))
-                                dispatch(set_showing(true))
-                            }, 500)
+                            if (!hasRolled) {
+                                dispatch(set_showing(false))
+                                setTimeout(() => {
+                                    dispatch(set_dice())
+                                    dispatch(set_rolled(true))
+                                    dispatch(set_showing(true))
+                                }, 500)
+                            } else {
+                                console.log("PLAY MOVE, DICE ROLLED ONCE", hasRolled)
+                            }
                         }}
                     >
                         <img src={srcList[props.num - 1]} alt={props.num}></img>

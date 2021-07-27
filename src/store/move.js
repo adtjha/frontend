@@ -15,18 +15,29 @@ export function movesReducer(state = initialState, action) {
         case MOVE:
             return {
                 ...state,
-                [action.payload.color]: state[action.payload.color].map((p, i) =>
-                    i === action.payload.num
-                        ? isNaN(p)
-                            ? 1
-                            : (p = parseInt(p) + parseInt(state.dice))
-                        : p
+                [action.payload.color]: state[action.payload.color].map(
+                    (p, i) =>
+                        i === action.payload.num
+                            ? isNaN(p)
+                                ? action.payload.dice === 6
+                                    ? 1
+                                    : p
+                                : (p =
+                                      parseInt(p) +
+                                      parseInt(action.payload.dice))
+                            : p
                 ),
             }
         case RESET:
             return {
-              ...state,
-              [action.payload.color]: state[action.payload.color].map((p, i)=> i === action.payload.num ? action.payload.color[0].toLowerCase()+i.toString() : p)
+                ...state,
+                [action.payload.color]: state[action.payload.color].map(
+                    (p, i) =>
+                        i === action.payload.num
+                            ? action.payload.color[0].toLowerCase() +
+                              i.toString()
+                            : p
+                ),
             }
         default:
             return state
@@ -44,14 +55,15 @@ export const MOVE = 'move'
 export const RESET = 'reset'
 
 // action creators
-export const move_piece = (num, color) => ({
+export const move_piece = (num, color, dice) => ({
     type: MOVE,
     payload: {
-        num: num,
-        color: color,
+        num,
+        color,
+        dice,
     },
 })
 export const reset_piece = (num, color) => ({
-  type: RESET,
-  payload: color
+    type: RESET,
+    payload: color,
 })

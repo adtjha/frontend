@@ -34,6 +34,6 @@ export default function extractObject(fen) {
     yellow: yellow,
     blue: blue,
     currentPlayer: currentPlayer,
-    dice: dice,
+    // dice: dice,
   };
 }
